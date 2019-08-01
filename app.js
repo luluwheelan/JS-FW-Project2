@@ -54,33 +54,51 @@ app.use(bodyParser.urlencoded({
 }));
 //End Parser
 
-//Our views path
-app.set('view', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-app.use('/css', express.static('assets/stylesheets')); 
-app.use('/js', express.static('assets/javascripts')); 
-app.use('/images', express.static('assets/images')); 
-
 
 //Authenticated helpers
-const isAuthenticated = (req) => {
-  return req.session && req.session.userId;
+const jwt = require("jsonwebtoken");
+const isAuthenticated = req => {
+  const token =
+    (req.cookies && req.cookies.token) ||
+    (req.body && req.body.token) ||
+    (req.query && req.query.token) ||
+    (req.header && req.headers["x-access-token"]);
+
+  if (req.session.userId) return true;
+
+  if (!token) {
+    return false;
+  } else {
+    jwt.verify(token, "bobthebuilder", function(err, decoded) {
+      if (err) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
 };
 app.use((req, res, next) => {
   req.isAuthenticated = () => {
     if (!isAuthenticated(req)) {
-      req.flash('error', `Hey dude, please login or register first`);
-      res.redirect('/');
+      return false;
     }
-  }
+
+    return true;
+  };
 
   res.locals.isAuthenticated = isAuthenticated(req);
   next();
 });
-
 //Our routes. Need make sure this is at the buttom of the page
-const routes = require('./routes.js');
-app.use('/', routes);
+const routes = require("./routes.js");
+app.use("/api", routes); //work as a api. The node app servers React app
+
+//Handles any requests that donot match the ones above will go index page
+app.get("*", (req, res) => {
+  console.log(req.path);
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 const port = (process.env.PORT || 4000)
 
