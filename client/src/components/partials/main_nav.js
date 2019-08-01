@@ -6,7 +6,7 @@ function MainNav() {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
-        <img src={require('/icon.png')} alt='home' style={{width:40, height:40}} />
+        <img src={require('./icon.png')} alt='home' style={{width:40, height:40}} />
       </a>
       <button
         className="navbar-toggler"
