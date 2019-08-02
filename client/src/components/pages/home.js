@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <header className="home-cta">
+    <div className="home-cta content">
       <h1>
         We are tasting beers from all of the world
         <br />
@@ -10,7 +10,7 @@ function Home() {
           Show All the Beers
         </button>
       </h1>
-    </header>
+    </div>
   );
 }
 

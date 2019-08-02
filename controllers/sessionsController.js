@@ -17,22 +17,26 @@ exports.authenticate = (req, res) => {
           const token = jwt.sign({ payload: req.body.email }, "bobthebuilder", {
             expiresIn: "1h"
           });
-          res.cookie("token", token, { httpOnly: true })
-          .status(201)
-          .send({ success: "You were authenticated." });
+          res
+            .cookie("token", token, { httpOnly: true })
+            .status(201)
+            .send({ success: "You were authenticated." });
         } else {
           res.status(401).json(err);
         }
       });
     })
     .catch(err => {
-      console.log("Not match", err);
-      res.status(401).json(err);
+      res.status(404).json(err);
     });
 };
 
 exports.logout = (req, res) => {
-  req.session.userId = null;
-  req.flash("success", "You are logged out");
-  res.redirect("/");
+  if (!req.isAuthenticatied())
+    res.status(401).send({ error: "could not authenticated" });
+  req.session.userId = null;//clear session
+  res
+    .clearCookie("token") //Clear jwt
+    .status(200)
+    .send({ success: "You are now logged out" });
 };
