@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="home-cta content">
+    <div className="home-cta">
       <h1>
         We are tasting beers from all of the world
         <br />
-        <button className="main-btn btn btn-dark" to="/beers">
+        <Link className="main-btn btn btn-dark" to="/beers">
           Show All the Beers
-        </button>
+        </Link>
       </h1>
     </div>
   );

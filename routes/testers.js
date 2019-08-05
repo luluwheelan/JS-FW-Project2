@@ -5,7 +5,7 @@ const router = require('express').Router();
 const TestersController = require('../controllers/testersController');
 
 // Our routes
-router.get(`/new`, TestersController.new);
+
 router.post('/', TestersController.create);
 
 // We have to export our changes

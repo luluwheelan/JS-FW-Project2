@@ -10,7 +10,11 @@ function Register() {
     event.preventDefault();
 
     Axios.post("/api/testers", {
-      tester: inputs //works the same as top lines
+          firstName: inputs.firstName,
+          lastName: inputs.lastName,
+          email: inputs.email,
+          password: inputs.password,
+          confirmPassword: inputs.confirmPassword
     })
       .then(resq => setRedirect(true))
       .catch(err => console.log(err));
@@ -21,8 +25,11 @@ function Register() {
     const { name, value } = event.target; //this is very cool destruction
 
     setInputs(inputs => {
-      inputs[name] = value;
-      return inputs;
+      return{
+        ...inputs,
+      [name]:value
+      }
+      
     });
   }
 

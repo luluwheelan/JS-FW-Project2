@@ -11,7 +11,7 @@ function Show(props) {
         setBeer(result.data);
       })
       .catch(err => console.error(err));
-  }, [props]); //[props] for useEffect to use this param
+  }, [props]); 
 
   return (
     <div className="container">
@@ -19,9 +19,9 @@ function Show(props) {
         <h1>{beer && beer.name}</h1>
       </header>
 
-      <h5>{beer && beer.tester}</h5>
-      <h5>{beer && beer.origin}</h5>
-      <h5>{beer && beer.brewery}</h5>
+      <p>{beer && beer.tester}</p>
+      <p>{beer && beer.origin}</p>
+      <p>{beer && beer.brewery}</p>
       <p>{beer && beer.description}</p>
     </div>
   );

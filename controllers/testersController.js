@@ -1,21 +1,9 @@
-const Tester = require('../models/tester');
-
-
-exports.new = (req, res) => {
-  res.render('testers/new', {
-    title: `New Tester`
-  });
-};
-
+const Tester = require("../models/tester");
 
 exports.create = (req, res) => {
   Tester.create(req.body.tester)
-    .then(() => {
-      req.flash('success', 'Your are now registered.');
-      res.redirect('/login');
-    })
-    .catch(err => {
-      req.flash('error', `ERROR: ${err}`);
-      res.redirect('/testers/new');
-    });
+    .then(() =>
+      res.status(201).send({ success: "Tester was created successfully" })
+    )
+    .catch(err => res.status(400).send(err));
 };
