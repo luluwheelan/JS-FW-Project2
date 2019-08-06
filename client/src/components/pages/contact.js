@@ -13,8 +13,8 @@ class Contact extends React.Component {
         },
         {
           name: "Craig",
-          email: "luluwheelan@gmail.com",
-          linkedInUrl: "https://www.linkedin.com/in/luluwheelan/"
+          email: "ayaanamirei629@gmail.com",
+          linkedInUrl: "https://www.linkedin.com/in/yinggehu2018/"
         }
       ]
     };

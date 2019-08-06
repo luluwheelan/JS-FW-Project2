@@ -7,7 +7,7 @@ function Index() {
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/beers")
+    Axios.get("/api/beers/myBeer")
       .then(result => setBeers(result.data))
       .catch(err => console.error(err));
   }, []); //[] for prevent keep going
@@ -27,6 +27,7 @@ function Index() {
               <th>Origin</th>
               <th>Brewery</th>
               <th>Tester</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +44,11 @@ function Index() {
                   {beer.tester && beer.tester.firstName}{" "}
                   {beer.tester && beer.tester.lastName}
                 </td>
-
+                <td>
+                    <Link to={`/beers/${beer._id}/edit`}>edit</Link>
+                     | 
+                    <Link to={`/beers/${beer._id}/destroy`}>delete</Link>
+                </td>
               </tr>
             ))}
           </tbody>

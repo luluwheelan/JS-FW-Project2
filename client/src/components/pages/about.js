@@ -5,7 +5,7 @@ function About() {
   return (
     <div className="container content p-4 bg-light">
       <h1 className="text-center">About Us</h1>
-      <p className="h5 pt-5">This is JavaScript Frameworks Group One project Two. </p>
+      <p className="h5 pt-5">This is JavaScript Frameworks Group Two lab. </p>
       <p className="h5">
         This project is built on React framework integrated with Node and Express
         Js.
@@ -34,7 +34,8 @@ function About() {
         <div className="col-sm-9">
           <h3>Craig </h3>
           <p>
-            
+            Craig is a computer programmer student from Georgian. Craig interested in Machine learning. He is currently learning Octave and MATLAB. 
+			He wants to take further education in future.
           </p>
         </div>
       </div>
