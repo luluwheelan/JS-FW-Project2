@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 function MainNav() {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
-        <img src={require('./icon.png')} alt='icon' style={{width:40, height:40}} />
+        <img
+          src={require("./icon.png")}
+          alt="icon"
+          style={{ width: 40, height: 40 }}
+        />
       </a>
       <button
         className="navbar-toggler"
@@ -27,6 +30,31 @@ function MainNav() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/beers">
+              Beers
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              href="/"
+              data-toggle="dropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Beers
+            </a>
+            <div className="dropdown-menu">
+              <Link className="dropdown-item" to="/beers/myBeers">
+                My Beers
+              </Link>
+              <Link className="dropdown-item" to="/beers/new">
+                New Beer
+              </Link>
+            </div>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/about">
               About
             </Link>
@@ -38,12 +66,21 @@ function MainNav() {
           </li>
         </ul>
         <ul className="navbar-nav navbar-right">
-        <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
           </li>
 
           <li className="nav-item">
-            <Link className="nav-link" to="/register">Register</Link>
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/logout">
+              Logout
+            </Link>
           </li>
         </ul>
       </div>

@@ -14,16 +14,8 @@ exports.myBeer = (req, res) => {
     tester: req.session.userId
   })
     .populate("tester")
-    .then(beers => {
-      res.render("beers/index", {
-        beers: beers,
-        title: "Beers You Had"
-      });
-    })
-    .catch(err => {
-      req.flash("error", `ERROR: ${err}`);
-      res.redirect("/");
-    });
+    .then(beers => res.json(beers))
+    .catch(err => res.status(404).send(err));
 };
 
 //Show beer records associated with the type
@@ -32,16 +24,8 @@ exports.type = (req, res) => {
     type: req.params.type
   })
     .populate("tester")
-    .then(beers => {
-      res.render("beers/index", {
-        beers: beers,
-        title: `${req.params.type}`
-      });
-    })
-    .catch(err => {
-      req.flash("error", `ERROR: ${err}`);
-      res.redirect("/");
-    });
+    .then(beers => res.json(beers))
+    .catch(err => res.status(404).send(err));
 };
 
 //Show beer records associated with the style
@@ -50,16 +34,8 @@ exports.style = (req, res) => {
     style: req.params.style
   })
     .populate("tester")
-    .then(beers => {
-      res.render("beers/index", {
-        beers: beers,
-        title: `${req.params.style}`
-      });
-    })
-    .catch(err => {
-      req.flash("error", `ERROR: ${err}`);
-      res.redirect("/");
-    });
+    .then(beers => res.json(beers))
+    .catch(err => res.status(404).send(err));
 };
 //everyone can see the detail of a beer record
 exports.show = (req, res) => {
