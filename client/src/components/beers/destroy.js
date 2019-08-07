@@ -9,7 +9,7 @@ function Destroy(props){
         });
     }, [props]);
 
-    return <Redirect to="/beers"/>
+    return <Redirect to="/beers/mybeer"/>
 }
 
 export default Destroy;

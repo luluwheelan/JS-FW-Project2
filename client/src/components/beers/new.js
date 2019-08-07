@@ -65,7 +65,7 @@ function New() {
               <option value="HYBRID">Hybrid</option>
               <option value="MALT">Malt</option>
               <option value="STOUT">Strout</option>
-              <option value="OTHER">Other</option>
+              <option value="OTHER" selected="selected">Other</option>
             </select>
           </div>
           <div className="form-group">
@@ -91,7 +91,7 @@ function New() {
               <option value="GOLDEN">Golden</option>
               <option value="FRUIT">Fruit</option>
               <option value="HONEY">Honey</option>
-              <option value="OTHER">Other</option>
+              <option value="OTHER" selected="selected">Other</option>
             </select>
           </div>
           <div className="form-group">

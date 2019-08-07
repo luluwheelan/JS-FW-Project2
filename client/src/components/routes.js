@@ -15,7 +15,7 @@ import Register from "./sessions/register";
 import Login from "./sessions/login";
 import Logout from "./sessions/logout";
 
-function Routes() {
+function Routes() { 
   return (
     <Switch>
       <Route exact path="/" component={Home} />

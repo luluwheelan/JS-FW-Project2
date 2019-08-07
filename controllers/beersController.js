@@ -40,12 +40,13 @@ exports.style = (req, res) => {
 //everyone can see the detail of a beer record
 exports.show = (req, res) => {
   //req.isAuthenticated();
+
   Beer.findOne({
     _id: req.params.id
     //tester: req.session.userId
   })
     .populate("tester")
-    .then(beer => res.json(beer))
+    .then(beer => {res.json(beer); console.log(beer);})
     .catch(err => res.status(401).send(err));
 };
 
@@ -69,7 +70,7 @@ exports.edit = (req, res) => {
     });
 };
 
-exports.create = (req, res) => {
+exports.create = (req, res) => {  
   if (!req.isAuthenticated())
     return res.status(401).send({ error: "Sign in idget" });
 

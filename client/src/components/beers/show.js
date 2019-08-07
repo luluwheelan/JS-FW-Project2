@@ -7,12 +7,12 @@ function Show(props) {
   useEffect(() => {
     Axios.get(`/api/beers/${props.match.params.id}`)
       .then(result => {
-        console.log(result);
+        console.log(result.data);
         setBeer(result.data);
       })
       .catch(err => console.error(err));
-  }, [props]); 
-
+  }, [props]);
+  console.log("!!!!!!!!!" + beer);
   return (
     <div className="container">
       <header>
