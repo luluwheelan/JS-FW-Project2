@@ -1,19 +1,26 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Axios from "axios";
 
 function New() {
-  const [inputs, setInputs] = useState({}); 
+  const [inputs, setInputs] = useState({});
   const [redirect, setRedirect] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
 
     Axios.post("/api/beers", {
-      beer: inputs
+      beer: {
+        name: inputs.name,
+        type: inputs.type,
+        style: inputs.style,
+        origin: inputs.origin,
+        brewery: inputs.brewery,
+        description: inputs.description
+      }
     })
-    .then(resp => setRedirect(true))
-    .catch(err => console.log(err));
+      .then(resp => setRedirect(true))
+      .catch(err => console.log(err));
   }
 
   function handleInputChange(event) {
@@ -22,13 +29,13 @@ function New() {
     const { name, value } = event.target;
 
     setInputs(inputs => {
-        inputs[name] = value;
-        return inputs;
+      inputs[name] = value;
+      return inputs;
     });
     console.log(inputs);
   }
 
-  if (redirect) return <Redirect to="/myBeer" />;
+  if (redirect) return <Redirect to="/beers/myBeer" />;
   return (
     <div className="container">
       <header>

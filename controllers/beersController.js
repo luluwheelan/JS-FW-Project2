@@ -72,7 +72,9 @@ exports.edit = (req, res) => {
 exports.create = (req, res) => {
   if (!req.isAuthenticated())
     return res.status(401).send({ error: "Sign in idget" });
-  req.body.beer.author = req.session.userId;
+
+  req.body.beer.tester = req.session.userId;
+  
   Beer.create(req.body.beer)
     .then(() => {
       res.status(201).send({ success: "Beer record created" });
