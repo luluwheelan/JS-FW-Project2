@@ -10,11 +10,7 @@ function New() {
     event.preventDefault();
 
     Axios.post("/api/beers", {
-      blog: {
-        title: inputs.title,
-        content: inputs.content,
-        status: inputs.status
-      }
+      beer: inputs
     })
     .then(resp => setRedirect(true))
     .catch(err => console.log(err));

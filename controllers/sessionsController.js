@@ -32,11 +32,11 @@ exports.authenticate = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  if (!req.isAuthenticatied())
-    res.status(401).send({ error: "could not authenticated" });
-  req.session.userId = null;//clear session
+  if (!req.isAuthenticated)
+    Response.status(401).send({ error: "Could not authenticated" });
+  req.session.userId = null;
   res
-    .clearCookie("token") //Clear jwt
+    .clearCookie("token")
     .status(200)
     .send({ success: "You are now logged out" });
 };

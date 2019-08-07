@@ -49,13 +49,6 @@ exports.show = (req, res) => {
     .catch(err => res.status(401).send(err));
 };
 
-exports.new = (req, res) => {
-  req.isAuthenticated();
-
-  res.render("beers/new", {
-    title: "New beer Post"
-  });
-};
 
 //edit and show almost the same, they use same form
 exports.edit = (req, res) => {
@@ -77,20 +70,14 @@ exports.edit = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  req.isAuthenticated();
-  req.body.beer.tester = req.session.userId;
+  if (!req.isAuthenticated())
+    return res.status(401).send({ error: "Sign in idget" });
+  req.body.beer.author = req.session.userId;
   Beer.create(req.body.beer)
     .then(() => {
-      req.flash("success", "Your new beer record was created successfully.");
-      res.redirect("/beers");
+      res.status(201).send({ success: "Beer record created" });
     })
-    .catch(err => {
-      req.flash("error", `ERROR: ${err}`);
-      res.render("beers/new", {
-        beer: req.body.beer,
-        title: "New beer"
-      });
-    });
+    .catch(err => res.status(404).send(err));
 };
 
 exports.update = (req, res) => {

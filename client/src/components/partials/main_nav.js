@@ -46,7 +46,7 @@ function MainNav() {
               Beers
             </a>
             <div className="dropdown-menu">
-              <Link className="dropdown-item" to="/beers/myBeers">
+              <Link className="dropdown-item" to="/beers/myBeer">
                 My Beers
               </Link>
               <Link className="dropdown-item" to="/beers/new">
