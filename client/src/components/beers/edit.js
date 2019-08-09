@@ -43,7 +43,7 @@ function Edit(props) {
   }
 
   if (redirect) {
-    return <Redirect to="/beers" />;
+    return <Redirect to="/beers/mybeer" />;
   }
 
   return (
