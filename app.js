@@ -96,11 +96,16 @@ const routes = require("./routes.js");
 app.use("/api", routes); //work as a api. The node app servers React app
 
 //Handles any requests that donot match the ones above will go index page
-const root = path.join(__dirname, '/client/build');
+const root = path.join(__dirname, "/client/build");
 app.use(express.static(root));
 app.use((req, res, next) => {
-  if (req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')) {
-    res.sendFile('index.html', { root });
+  if (
+    req.method === "GET" &&
+    req.accepts("html") &&
+    !req.is("json") &&
+    !req.path.includes(".")
+  ) {
+    res.sendFile("index.html", { root });
   } else next();
 });
 // app.get("*", (req, res) => {
