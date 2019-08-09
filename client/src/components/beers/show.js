@@ -2,27 +2,26 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function Show(props) {
-  const [beer, setBeer] = useState([]);
+  const [beer, setBeer] = useState({});
 
   useEffect(() => {
     Axios.get(`/api/beers/${props.match.params.id}`)
       .then(result => {
-        console.log(result.data);
         setBeer(result.data);
+        console.log("From beer show ", result.data);
       })
       .catch(err => console.error(err));
   }, [props]);
-  console.log("!!!!!!!!!" + beer);
   return (
-    <div className="container">
+    <div className="container mt-5">
       <header>
-        <h1>{beer && beer.name}</h1>
+        <h1>{beer.name}</h1>
       </header>
 
-      <p>{beer && beer.tester}</p>
-      <p>{beer && beer.origin}</p>
-      <p>{beer && beer.brewery}</p>
-      <p>{beer && beer.description}</p>
+      <p>{`${beer.tester && beer.tester.firstName} ${beer.tester && beer.tester.lastName}`}</p>
+      <p>{beer.origin}</p>
+      <p>{beer.brewery}</p>
+      <p>{beer.description}</p>
     </div>
   );
 }

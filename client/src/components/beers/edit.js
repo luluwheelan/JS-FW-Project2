@@ -9,7 +9,10 @@ function Edit(props) {
   useEffect(() => {
     Axios.get(`/api/beers/${props.match.params.id}`)
 
-      .then(result => setInputs(result.data))
+      .then(result => {
+        setInputs(result.data);
+        
+      })
       .catch(err => console.error(err));
   }, [props]);
 
@@ -49,7 +52,7 @@ function Edit(props) {
         <h1>Edit Your Beer</h1>
       </header>
       <div>
-      <form action="/beers" method="POST" onSubmit={handleSubmit}>
+        <form action="/beers" method="POST" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Name</label>
             <input

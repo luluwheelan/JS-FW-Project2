@@ -3,7 +3,7 @@ const Tester = require("../models/tester");
 const jwt = require("jsonwebtoken");
 
 exports.authenticate = (req, res) => {
-  console.log(req.body);
+  console.log("From session controller req.body: " + req.body);
   Tester.findOne({
     email: req.body.email
   })

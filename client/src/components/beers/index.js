@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 
 function Index() {
-
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
     Axios.get("/api/beers")
-      .then(result => setBeers(result.data))
+      .then(result => {
+        setBeers(result.data);
+      })
       .catch(err => console.error(err));
   }, []); //[] for prevent keep going
 
@@ -35,15 +36,16 @@ function Index() {
                 <td>
                   <Link to={`/beers/${beer._id}`}>{beer.name}</Link>
                 </td>
-                <td>{beer.type}</td>
+                <td>
+                  <Link to={`/beers/${beer.type}`}>{beer.type}</Link>
+                </td>
                 <td>{beer.style}</td>
                 <td>{beer.origin}</td>
                 <td>{beer.brewery}</td>
                 <td>
-                  {beer.tester && beer.tester.firstName}{" "}
-                  {beer.tester && beer.tester.lastName}
+                  {(beer.tester && beer.tester.firstName)}{" "}
+                  {(beer.tester && beer.tester.lastName)}
                 </td>
-
               </tr>
             ))}
           </tbody>

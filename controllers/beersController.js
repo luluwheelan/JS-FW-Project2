@@ -4,7 +4,7 @@ const Beer = require("../models/beer");
 exports.index = (req, res) => {
   Beer.find()
     .populate("tester")
-    .then(beers => res.json(beers))
+    .then(beers => {res.json(beers); console.log("In node" + beers)})
     .catch(err => res.status(404).send(err));
 };
 //Show only the beer records associated with the tester
@@ -14,7 +14,7 @@ exports.myBeer = (req, res) => {
     tester: req.session.userId
   })
     .populate("tester")
-    .then(beers => res.json(beers))
+    .then(beers => {res.json(beers); console.log("In node my beer" + beers)})
     .catch(err => res.status(404).send(err));
 };
 
@@ -46,7 +46,7 @@ exports.show = (req, res) => {
     //tester: req.session.userId
   })
     .populate("tester")
-    .then(beer => {res.json(beer); console.log(beer);})
+    .then(beer => res.json(beer))
     .catch(err => res.status(401).send(err));
 };
 
@@ -58,16 +58,8 @@ exports.edit = (req, res) => {
     _id: req.params.id,
     tester: req.session.userId
   })
-    .then(beer => {
-      res.render("beers/edit", {
-        title: `Edit ${beer.name}`,
-        beer: beer
-      });
-    })
-    .catch(err => {
-      req.flash("error", `ERROR: ${err}`);
-      res.redirect("/beers");
-    });
+  .then(beer => res.json(beer))
+  .catch(err => res.status(404).send(err));
 };
 
 exports.create = (req, res) => {  
