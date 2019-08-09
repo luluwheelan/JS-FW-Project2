@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div className="App">
       
-      <Routes />
+      <Routes className="content"/>
       <MainNav />
     </div>
   );

@@ -4,7 +4,7 @@ const Beer = require("../models/beer");
 exports.index = (req, res) => {
   Beer.find()
     .populate("tester")
-    .then(beers => {res.json(beers); console.log("In node" + beers)})
+    .then(beers => res.json(beers))
     .catch(err => res.status(404).send(err));
 };
 //Show only the beer records associated with the tester
@@ -14,7 +14,7 @@ exports.myBeer = (req, res) => {
     tester: req.session.userId
   })
     .populate("tester")
-    .then(beers => {res.json(beers); console.log("In node my beer" + beers)})
+    .then(beers => res.json(beers))
     .catch(err => res.status(404).send(err));
 };
 

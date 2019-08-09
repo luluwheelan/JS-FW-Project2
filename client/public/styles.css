@@ -1,10 +1,12 @@
 html,
-body {
+body,
+.App,
+#root {
   height: 100%;
   width: 100%;
 }
 
-/* Photo by Marco Molitor on Unsplash */
+
 .home-cta {
   background: url('/images/beer.jpg');
   background-size: cover;
@@ -13,6 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .home-cta>h1 {
