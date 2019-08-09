@@ -36,15 +36,13 @@ function Index() {
                 <td>
                   <Link to={`/beers/${beer._id}`}>{beer.name}</Link>
                 </td>
-                <td>
-                  <Link to={`/beers/${beer.type}`}>{beer.type}</Link>
-                </td>
+                <td>{beer.type}</td>
                 <td>{beer.style}</td>
                 <td>{beer.origin}</td>
                 <td>{beer.brewery}</td>
                 <td>
-                  {(beer.tester && beer.tester.firstName)}{" "}
-                  {(beer.tester && beer.tester.lastName)}
+                  {beer.tester && beer.tester.firstName}{" "}
+                  {beer.tester && beer.tester.lastName}
                 </td>
               </tr>
             ))}
